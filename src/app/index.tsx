@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#0f172a",
   },
   loadingContainer: {
     flex: 1,
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   loadingTxt: { marginTop: 12, fontSize: 16, color: "gray" },
-  time_txt: { fontSize: 20, color: "gray", marginBottom: 20 },
-  group_txt: { fontSize: 40, fontWeight: "bold" },
-  team_txt: { fontSize: 40 },
+  time_txt: { fontSize: 20, color: "#94a3b8", marginBottom: 20 },
+  group_txt: { fontSize: 40, color: "white", fontWeight: "bold" },
+  team_txt: { fontSize: 40, color: "white" },
   desc_txt: {
     fontSize: 16,
     color: "gray",
