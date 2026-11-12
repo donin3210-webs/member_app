@@ -1,56 +1,106 @@
-# Welcome to your Expo app 👋
+# Member App — Group 1 "Team Spirit"
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple 3-screen mobile and web app that introduces our group and its members. Built with **React Native**, **Expo**, and **Expo Router**.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Home screen** with a live clock, the group name, a short team description, and a "View Members" button.
+- **Members screen** listing every member (name and role) in a scrollable list, with a "Back to Home" button under the list.
+- **Member Details screen** showing one member's name, role, email, and phone number, with a Back button.
+- **Loading screen** shown for a short moment when moving between pages.
+- **Dark theme** (navy background, slate navy header and card, also blue buttons).
 
-   ```bash
-   npm install
-   ```
+## Screens and Flow
 
-2. Start the app
+```
+Home  ──(View Members)──▶  Members  ──(tap a member)──▶  Member Details
+  ▲                           │                                │
+  └──────(Back to Home)───────┘                                │
+                              ◀─────────────(Back)─────────────┘
+```
 
-   ```bash
-   npx expo start
-   ```
+| Screen | Route | What it does |
+|---|---|---|
+| Home | `/` | Shows a live clock, group name, description, and the "View Members" button |
+| Our Members | `/members` | Lists all members using a `FlatList`; tapping a card opens that member's details |
+| Member Details | `/members/[id]` | Reads the `id` from the route and shows that member's information |
 
-In the output, you'll find options to open the app in a
+## Project Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+```
+src/
+├── app/
+│   ├── _layout.tsx          # Stack navigation and header styling
+│   ├── index.tsx            # Home screen
+│   └── members/
+│       ├── index.tsx        # Members list screen
+│       └── [id].tsx         # Member Details screen (dynamic route)
+└── data/
+    └── members.ts           # List of members (id, name, role, email, phone)
+```
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## How It Works
 
-## Get a fresh project
+- **Routing:** Expo Router uses the file names inside `src/app` as routes. `[id].tsx` is a *dynamic route*, so `/members/1` and `/members/2` both open the same screen with a different `id`.
+- **Navigation:** `useRouter()` provides `router.push()` to open a page and `router.back()` or `router.dismissTo()` to leave it. Back buttons check or use a safe fallback so the app does not crash if the page was opened directly.
+- **Data:** All members live in one array in `data/members`. The Members screen loops over it with `FlatList`, and the details screen finds the matching member by `id`.
+- **Live clock (Home):** `useState` holds the time, and `useEffect` updates it every second with `setInterval`. The interval is cleared when the screen closes.
+- **Loading:** a `loading` state is set to `true` before navigating. While it is `true`, the screen shows a full-screen spinner, then `router.push()` runs after about 0.8 seconds.
+- **Header:** `_layout.tsx` sets the header color, title color, and screen titles for every page.
 
-When you're ready, run:
+## Members
+
+| Name | Role |
+|---|---|
+| Lyndon Colonia | Leader |
+| Krishna Paul Quisora | Graphic Designer |
+| Orlie Dela Pena | Frontend Dev |
+| Harry Dorong | Backend Dev |
+| Evewin Colita | QA Lead |
+| Christian Ortega | Tester |
+
+## Design
+
+| Use | Color |
+|---|---|
+| Page background | `#0f172a` (dark navy) |
+| Header and cards | `#1e293b` (slate navy) |
+| Buttons | `#2563eb` (blue) |
+| Button glow | `#3b82f6` (light blue) |
+| Main text | white |
+| Secondary text | gray |
+
+## Getting Started
+
+Run these commands in order in your terminal:
+
+```bash
+node -v
+```
+Checks that Node.js is installed. It should print a version number.
+
+```bash
+npx create-expo-app@latest
+```
+Creates a new Expo project with the starter files and installs the packages.
 
 ```bash
 npm run reset-project
 ```
+Clears the example screens and leaves a two file(_layout and index).
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+```bash
+npx expo start
+```
+Starts the app. Press the `URL(http://localhost:8081)` to open it in the browser, or scan the QR code with Expo Go App on your phone.
 
-### Other setup steps
+## Tech Stack
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- React Native
+- Expo
+- Expo Router
+- TypeScript
 
-## Learn more
+## Notes
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- The loading screen is a short, simulated delay because the member data is stored locally.

@@ -16,12 +16,22 @@ export default function MemberDetails() {
     );
   }
 
+  const getInitials = (name: string) => {
+  const words = name.split(" ");
+    return words[0][0] + words[words.length - 1][0];
+  };
+
   return (
     <View style={styles.container}>
+
+      <View style={styles.avatar}>
+        <Text style={styles.avatar_txt}>{getInitials(member.name)}</Text>
+      </View>
+
       <Text style={styles.name_txt}>{member.name}</Text>
       <Text style={styles.role_txt}>{member.role}</Text>
 
-      <View style={styles.card}>
+      <View style={styles.card1}>
         <Text style={styles.label_txt}>Email</Text>
         <Text style={styles.info_txt}>{member.email}</Text>
 
@@ -53,9 +63,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#0f172a",
   },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#2563eb",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 8
+  },
+  avatar_txt: { color: "white", fontSize: 36, fontWeight: "bold" },
   name_txt: { fontSize: 32, color: "white", fontWeight: "bold", textAlign: "center" },
   role_txt: { fontSize: 18, color: "gray", marginBottom: 20 },
-  card: {
+  card1: {
     backgroundColor: "#1e293b",
     borderRadius: 12,
     padding: 16,

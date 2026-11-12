@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   group_txt: { fontSize: 40, color: "white", fontWeight: "bold" },
   team_txt: { fontSize: 40, color: "white" },
   desc_txt: {
-    fontSize: 16,
+    fontSize: 18,
     color: "gray",
     textAlign: "center",
     paddingHorizontal: 30,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2563eb",
     borderRadius: 50,
     minWidth: 220,
-    paddingVertical: 14,
+    paddingVertical: 16,
     alignItems: "center",
 
     shadowColor: "#3b82f6",                 

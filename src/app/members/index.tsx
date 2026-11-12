@@ -32,7 +32,12 @@ export default function Members() {
         data={members}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
+        
+        showsVerticalScrollIndicator={false}
+        decelerationRate={0.998}
+
         ListHeaderComponent={<Text style={styles.title}>Our Members</Text>}
+
         renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.8}
