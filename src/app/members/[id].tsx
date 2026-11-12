@@ -1,0 +1,70 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { members } from "../data/members";
+
+export default function MemberDetails() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const router = useRouter();
+
+  const member = members.find((m) => m.id === id);
+
+  if (!member) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.not_found_txt}>Member not found.</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.name_txt}>{member.name}</Text>
+      <Text style={styles.role_txt}>{member.role}</Text>
+
+      <View style={styles.card}>
+        <Text style={styles.label_txt}>Email</Text>
+        <Text style={styles.info_txt}>{member.email}</Text>
+
+        <Text style={styles.label_txt}>Phone</Text>
+        <Text style={styles.info_txt}>{member.phone}</Text>
+      </View>
+
+      <TouchableOpacity activeOpacity={0.8} onPress={() => router.back()}>
+        <View style={styles.btn}>
+          <Text style={styles.btn_txt}>Back</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+  },
+  name_txt: { fontSize: 32, fontWeight: "bold", textAlign: "center" },
+  role_txt: { fontSize: 18, color: "gray", marginBottom: 20 },
+  card: {
+    backgroundColor: "#f3f4f6",
+    borderRadius: 12,
+    padding: 16,
+    width: "100%",
+    maxWidth: 400,
+    marginBottom: 30,
+  },
+  label_txt: { fontSize: 14, color: "gray", marginTop: 8 },
+  info_txt: { fontSize: 18, fontWeight: "600" },
+  not_found_txt: { fontSize: 18, color: "gray" },
+  btn: {
+    backgroundColor: "#2563eb",
+    borderRadius: 50,
+    minWidth: 220,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
+  btn_txt: { color: "white", fontSize: 18, fontWeight: "600" },
+});
