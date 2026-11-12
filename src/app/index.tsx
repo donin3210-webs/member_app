@@ -1,15 +1,33 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   const router = useRouter();
   const [time, setTime] = useState(new Date());
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const handleViewMembers = () => {
+    setLoading(true);
+    setTimeout(() => {
+      router.push("/members");
+      setLoading(false);
+    }, 800);
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#2563eb" />
+        <Text style={styles.loadingTxt}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -23,7 +41,7 @@ export default function Index() {
         opportunity to learn and grow together.
       </Text>
 
-      <TouchableOpacity activeOpacity={0.8} onPress={() => router.push("/members")}>
+      <TouchableOpacity activeOpacity={0.8} onPress={handleViewMembers}>
         <View style={styles.btn}>
           <Text style={styles.btn_txt}>View Members</Text>
         </View>
@@ -39,6 +57,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "white",
   },
+  loadingContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+  },
+  loadingTxt: { marginTop: 12, fontSize: 16, color: "gray" },
   time_txt: { fontSize: 20, color: "gray", marginBottom: 20 },
   group_txt: { fontSize: 40, fontWeight: "bold" },
   team_txt: { fontSize: 40 },
