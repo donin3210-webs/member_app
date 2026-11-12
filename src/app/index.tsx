@@ -6,10 +6,9 @@ export default function Index() {
   const router = useRouter();
   const [time, setTime] = useState(new Date());
 
-  // update the clock every second
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer); // cleanup
+    return () => clearInterval(timer);
   }, []);
 
   return (
