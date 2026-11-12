@@ -27,12 +27,12 @@ export default function Members() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Our Members</Text>
 
       <FlatList
         data={members}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
+        ListHeaderComponent={<Text style={styles.title}>Our Members</Text>}
         renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.8}
@@ -44,23 +44,48 @@ export default function Members() {
             </View>
           </TouchableOpacity>
         )}
+
+        ListFooterComponent={
+          <View style={styles.footer}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() => router.dismissTo("/")}>
+              <View style={styles.btn}>
+                <Text style={styles.btn_txt}>Back to Home</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        }
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white" },
+  container: { flex: 1, backgroundColor: "#0f172a" },
   loadingContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#0f172a",
   },
   loadingTxt: { marginTop: 12, fontSize: 16, color: "gray" },
-  title: { fontSize: 32, fontWeight: "bold", textAlign: "center", marginVertical: 20 },
+  title: { fontSize: 32, color: "white", fontWeight: "bold", textAlign: "center", marginVertical: 20 },
   list: { paddingHorizontal: 20, paddingBottom: 20 },
-  card: { backgroundColor: "#f3f4f6", borderRadius: 12, padding: 16, marginBottom: 12 },
-  name_txt: { fontSize: 18, fontWeight: "600" },
+  card: { backgroundColor: "#1e293b", borderRadius: 12, padding: 16, marginBottom: 12 },
+  name_txt: { fontSize: 18, color: "white", fontWeight: "600" },
   role_txt: { fontSize: 14, color: "gray", marginTop: 4 },
+  btn: {
+    backgroundColor: "#2563eb",
+    borderRadius: 50,
+    minWidth: 220,
+    paddingVertical: 14,
+    alignItems: "center",
+
+    shadowColor: "#3b82f6",                 
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,                      
+    elevation: 10,  
+  },
+  btn_txt: { color: "white", fontSize: 18, fontWeight: "600" },
+  footer: { alignItems: "center", marginTop: 12 },
 });

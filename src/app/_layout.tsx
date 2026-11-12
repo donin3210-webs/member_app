@@ -3,12 +3,11 @@ import { Stack } from "expo-router";
 export default function Layout() {
   return (
     <Stack
-      // ADDED: screenOptions applies to ALL screens in this Stack
       screenOptions={{
-        headerStyle: { backgroundColor: "#1e293b" }, // header background (slate navy)
-        headerTintColor: "white", // back arrow and title color
-        headerTitleStyle: { fontWeight: "bold" }, // bolder title text
-        headerShadowVisible: false, // removes the thin line under the header
+        headerStyle: { backgroundColor: "#1e293b" },
+        headerTintColor: "white",
+        headerTitleStyle: { fontWeight: "bold" },
+        headerShadowVisible: false,
       }}
     >
       <Stack.Screen name="index" options={{ title: "Home" }} />

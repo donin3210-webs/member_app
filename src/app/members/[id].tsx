@@ -29,7 +29,14 @@ export default function MemberDetails() {
         <Text style={styles.info_txt}>{member.phone}</Text>
       </View>
 
-      <TouchableOpacity activeOpacity={0.8} onPress={() => router.back()}>
+      <TouchableOpacity activeOpacity={0.8} 
+      onPress={() => {
+        if (router.canGoBack()) {
+          router.back();
+        } else {
+          router.replace("/members");
+        }
+      }}>
         <View style={styles.btn}>
           <Text style={styles.btn_txt}>Back</Text>
         </View>
@@ -44,12 +51,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
-    backgroundColor: "white",
+    backgroundColor: "#0f172a",
   },
-  name_txt: { fontSize: 32, fontWeight: "bold", textAlign: "center" },
+  name_txt: { fontSize: 32, color: "white", fontWeight: "bold", textAlign: "center" },
   role_txt: { fontSize: 18, color: "gray", marginBottom: 20 },
   card: {
-    backgroundColor: "#f3f4f6",
+    backgroundColor: "#1e293b",
     borderRadius: 12,
     padding: 16,
     width: "100%",
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   label_txt: { fontSize: 14, color: "gray", marginTop: 8 },
-  info_txt: { fontSize: 18, fontWeight: "600" },
+  info_txt: { fontSize: 18, color: "white", fontWeight: "600" },
   not_found_txt: { fontSize: 18, color: "gray" },
   btn: {
     backgroundColor: "#2563eb",
@@ -65,6 +72,12 @@ const styles = StyleSheet.create({
     minWidth: 220,
     paddingVertical: 14,
     alignItems: "center",
+
+    shadowColor: "#3b82f6",                 
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,                      
+    elevation: 10,  
   },
   btn_txt: { color: "white", fontSize: 18, fontWeight: "600" },
 });

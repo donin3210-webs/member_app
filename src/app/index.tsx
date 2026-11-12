@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#0f172a",
   },
   loadingTxt: { marginTop: 12, fontSize: 16, color: "gray" },
   time_txt: { fontSize: 20, color: "#94a3b8", marginBottom: 20 },
@@ -81,6 +81,12 @@ const styles = StyleSheet.create({
     minWidth: 220,
     paddingVertical: 14,
     alignItems: "center",
+
+    shadowColor: "#3b82f6",                 
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,                      
+    elevation: 10,                          
   },
   btn_txt: { color: "white", fontSize: 18, fontWeight: "600" },
 });
