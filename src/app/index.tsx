@@ -13,7 +13,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.time_txt}>{time.toLocaleTimeString()}</Text>
+      <Text style={styles.time_txt}>{time.toLocaleTimeString("en-US")}</Text>
       <Text style={styles.group_txt}>Group 1</Text>
       <Text style={styles.team_txt}>Team Spirit</Text>
 
