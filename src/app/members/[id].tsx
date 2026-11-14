@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { members } from "../data/members";
+import { members } from "../../data/members";
 
 export default function MemberDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();

@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { members } from "../data/members";
+import { members } from "../../data/members";
 
 export default function Members() {
   const router = useRouter();
